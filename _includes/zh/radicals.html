@@ -1,0 +1,91 @@
+{%- comment -%}
+모은 부수 도감 — 손으로 세지 않는다. category: zh-class 인 글 전부의
+frontmatter `radicals` 를 훑어서 누적 집계한다. 회차가 쌓이면 저절로 자란다.
+
+각 글 frontmatter 에 이렇게 적어두면 된다:
+  radicals: "車:수레,車:수레,皿:그릇,髟:긴 머리"
+같은 부수의 글자를 그 수업에서 2자 다뤘으면 두 번 적는다 — 그게 곧 만난 글자 수가 된다.
+
+이 글에서 새로 얻은 부수는 붉게, 예전 것은 흐리게 나온다.
+사용: {% include zh/radicals.html %}
+{%- endcomment -%}
+
+{%- comment -%} Liquid 는 [ ] 안에서 필터를 못 쓴다 — 키를 먼저 만든다 {%- endcomment -%}
+{%- assign zh_cat = include.category | default: 'zh-class' -%}
+{%- assign zh_lessons = site.categories[zh_cat] -%}
+{%- if zh_lessons == nil or zh_lessons.size == 0 -%}
+  {%- comment -%} 아직 발행된 수업이 없으면(초회·draft 검증) 이 글만으로 센다 {%- endcomment -%}
+  {%- assign zh_lessons = "" | split: "" -%}
+{%- endif -%}
+{%- comment -%}
+지난 회차들 + 이 글. 자기 자신은 url 로 걸러 두 번 세지 않는다.
+(draft 는 site.categories 에 안 잡히므로 page.radicals 를 항상 따로 더한다)
+{%- endcomment -%}
+{%- assign zh_all = "" -%}
+{%- for zh_l in zh_lessons -%}
+  {%- if zh_l.radicals and zh_l.url != page.url -%}
+    {%- assign zh_all = zh_all | append: zh_l.radicals | append: "," -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if page.radicals -%}
+  {%- assign zh_all = zh_all | append: page.radicals | append: "," -%}
+{%- endif -%}
+{%- assign zh_pairs = zh_all | split: "," -%}
+
+{%- comment -%} 등장한 부수 목록 (중복 제거) {%- endcomment -%}
+{%- assign zh_keylist = "" -%}
+{%- for zh_p in zh_pairs -%}
+  {%- assign zh_kv = zh_p | split: ":" -%}
+  {%- assign zh_k = zh_kv[0] | strip -%}
+  {%- if zh_k != "" -%}
+    {%- assign zh_keylist = zh_keylist | append: zh_k | append: "," -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign zh_keys = zh_keylist | split: "," | uniq -%}
+
+{%- if zh_keys.size > 0 -%}
+{%- assign zh_mine = page.radicals | default: "" -%}
+
+{%- comment -%} 오늘 새로 얻은 것 먼저, 그다음 예전 것 {%- endcomment -%}
+{%- capture zh_fresh -%}
+  {%- for zh_k in zh_keys -%}
+    {%- if zh_mine contains zh_k -%}
+      {%- assign zh_cnt = 0 -%}
+      {%- assign zh_name = "" -%}
+      {%- for zh_p in zh_pairs -%}
+        {%- assign zh_kv = zh_p | split: ":" -%}
+        {%- assign zh_pk = zh_kv[0] | strip -%}
+        {%- if zh_pk == zh_k -%}
+          {%- assign zh_cnt = zh_cnt | plus: 1 -%}
+          {%- if zh_kv[1] -%}{%- assign zh_name = zh_kv[1] | strip -%}{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <div class="rad is-new"><span class="r-g">{{ zh_k }}</span><span class="r-n">{{ zh_name }}</span><span class="r-c">{{ zh_cnt }}자</span></div>
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture zh_older -%}
+  {%- for zh_k in zh_keys -%}
+    {%- unless zh_mine contains zh_k -%}
+      {%- assign zh_cnt = 0 -%}
+      {%- assign zh_name = "" -%}
+      {%- for zh_p in zh_pairs -%}
+        {%- assign zh_kv = zh_p | split: ":" -%}
+        {%- assign zh_pk = zh_kv[0] | strip -%}
+        {%- if zh_pk == zh_k -%}
+          {%- assign zh_cnt = zh_cnt | plus: 1 -%}
+          {%- if zh_kv[1] -%}{%- assign zh_name = zh_kv[1] | strip -%}{%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      <div class="rad is-old"><span class="r-g">{{ zh_k }}</span><span class="r-n">{{ zh_name }}</span><span class="r-c">{{ zh_cnt }}자</span></div>
+    {%- endunless -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div class="zh-radicals">
+  <h3>모은 부수</h3>
+  <p class="sub">{{ include.sub | default: "글자를 낱개로 외우지 말고 부수로 묶어서 가져가. 숫자는 지금까지 이 부수로 만난 글자 수." }}</p>
+  <div class="grid">{{ zh_fresh }}{{ zh_older }}</div>
+</div>
+{%- endif -%}

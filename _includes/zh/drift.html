@@ -1,0 +1,25 @@
+{%- comment -%}
+② 의미 이동 타임라인 — 한 글자가 시대를 건너며 무엇을 가리켜 왔는지.
+
+사용:
+{% include zh/drift.html
+   stages="AD 100 · 說文解字|馬|수레에서 말을 풀어준다;근대|貨|배와 트럭에서 짐을 내린다;2026 · 豆瓣|机|폰에서 앱을 지운다"
+   caption="2천 년 동안 卸가 내려놓은 것 — 말의 멍에에서, 화물에서, 이제는 앱으로." %}
+
+stages 구분자: 단계끼리 `;`, 한 단계 안 필드는 `시대|글자|장면`.
+마지막 단계가 오늘이다(붉게 표시된다). 2~4단계를 권한다.
+{%- endcomment -%}
+<figure class="zh-fig">
+  <div class="zh-drift">
+    {%- assign zh_stages = include.stages | split: ";" -%}
+    {%- for zh_s in zh_stages -%}
+      {%- assign zh_f = zh_s | split: "|" -%}
+      <div class="stage">
+        <span class="era">{{ zh_f[0] | strip }}</span>
+        {%- if zh_f[1] %}<span class="obj">{{ zh_f[1] | strip }}</span>{% endif -%}
+        <span class="scene">{{ zh_f[2] | strip }}</span>
+      </div>
+    {%- endfor -%}
+  </div>
+  {%- if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif -%}
+</figure>

@@ -1,0 +1,587 @@
+/* ────────────────────────────────────────────────
+   zh-class — 江遥의 중국어 수업 글 전용 스타일
+   owner: jiangyao PO
+   전부 .zh-lesson 스코프. 다른 카테고리 글에는 영향 없음.
+   테마(minima) 스타일시트는 건드리지 않는다.
+   ──────────────────────────────────────────────── */
+
+.zh-lesson {
+  --zh-ink: #16181A;
+  --zh-paper: #F2F3F1;
+  --zh-cinnabar: #B8322C;   /* 인주 붉은색 — 강조 */
+  --zh-patina: #3F7A6B;     /* 청동 녹청 — 보조 */
+  --zh-muted: #6E7370;
+  --zh-rule: #D5D8D4;
+  --zh-card: #FFFFFF;
+  --zh-shadow: rgba(22, 24, 26, .07);
+
+  --zh-serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", "SimSun", serif;
+  --zh-brush: "Kaiti SC", "STKaiti", "Noto Serif CJK SC", serif;
+}
+
+/* 한자 · 병음 인라인 ───────────────────────── */
+
+.zh-lesson .zh-term {
+  font-family: var(--zh-serif);
+  font-weight: 700;
+  color: var(--zh-cinnabar);
+  white-space: nowrap;
+}
+
+.zh-lesson .zh-py {
+  color: var(--zh-muted);
+  font-size: .88em;
+  font-style: italic;
+}
+
+.zh-lesson .zh-zi {
+  font-family: var(--zh-brush);
+  font-size: 1.18em;
+  padding: 0 .08em;
+}
+
+.zh-lesson .zh-han {
+  font-family: var(--zh-serif);
+}
+
+/* 오늘 올라온 글 (소스 인용) ──────────────── */
+
+.zh-lesson .zh-source {
+  margin: 2.2rem 0;
+  padding: 1.15rem 1.3rem 1.25rem;
+  background: var(--zh-card);
+  box-shadow: 0 1px 3px var(--zh-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+}
+
+.zh-lesson .zh-source .from {
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--zh-patina);
+  font-weight: 600;
+}
+
+.zh-lesson .zh-source .title {
+  font-size: 1.22rem;
+  font-family: var(--zh-serif);
+  line-height: 1.5;
+}
+
+.zh-lesson .zh-source .py {
+  font-size: .82rem;
+  color: var(--zh-muted);
+  font-style: italic;
+}
+
+.zh-lesson .zh-source .ko {
+  font-size: .93rem;
+}
+
+/* 시각화 공통 ─────────────────────────────── */
+
+.zh-lesson figure.zh-fig {
+  margin: 2.4rem 0;
+  padding: 0;
+}
+
+.zh-lesson figure.zh-fig figcaption {
+  font-size: .78rem;
+  color: var(--zh-muted);
+  margin-top: .7rem;
+  line-height: 1.65;
+}
+
+/* ① 글자 해부 · 字解 ──────────────────────── */
+
+.zh-lesson .zh-dissect {
+  background: var(--zh-card);
+  box-shadow: 0 1px 3px var(--zh-shadow);
+  display: grid;
+  grid-template-columns: minmax(0, 8.5rem) minmax(0, 1fr);
+}
+
+.zh-lesson .zh-dissect .whole {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+  padding: 1.6rem .8rem;
+  border-right: 1px solid var(--zh-rule);
+  background: linear-gradient(180deg, transparent, var(--zh-paper));
+}
+
+.zh-lesson .zh-dissect .whole .glyph {
+  font-family: var(--zh-brush);
+  font-size: 5.2rem;
+  line-height: 1;
+  color: var(--zh-ink);
+}
+
+.zh-lesson .zh-dissect .whole .rd {
+  font-size: .75rem;
+  color: var(--zh-muted);
+  font-style: italic;
+  letter-spacing: .04em;
+}
+
+.zh-lesson .zh-dissect .parts {
+  display: flex;
+  flex-direction: column;
+}
+
+.zh-lesson .zh-dissect .part {
+  display: grid;
+  grid-template-columns: 3.1rem minmax(0, 1fr);
+  align-items: center;
+  gap: .85rem;
+  padding: .85rem 1.1rem;
+  border-bottom: 1px solid var(--zh-rule);
+}
+
+.zh-lesson .zh-dissect .part:last-child {
+  border-bottom: 0;
+}
+
+.zh-lesson .zh-dissect .p-glyph {
+  font-family: var(--zh-brush);
+  font-size: 2.1rem;
+  line-height: 1;
+  text-align: center;
+  color: var(--zh-cinnabar);
+}
+
+.zh-lesson .zh-dissect .p-body {
+  display: flex;
+  flex-direction: column;
+  gap: .1rem;
+  min-width: 0;
+}
+
+.zh-lesson .zh-dissect .p-name {
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.zh-lesson .zh-dissect .p-name em {
+  font-style: normal;
+  color: var(--zh-muted);
+  font-weight: 400;
+  font-size: .93em;
+}
+
+.zh-lesson .zh-dissect .p-note {
+  font-size: .8rem;
+  color: var(--zh-muted);
+  line-height: 1.6;
+}
+
+/* 說文解字 근거 줄 */
+
+.zh-lesson .zh-shuowen {
+  margin-top: -1px;
+  background: var(--zh-card);
+  border-top: 1px solid var(--zh-rule);
+  padding: .8rem 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem .8rem;
+  box-shadow: 0 1px 3px var(--zh-shadow);
+}
+
+.zh-lesson .zh-shuowen .tag {
+  font-size: .68rem;
+  letter-spacing: .1em;
+  color: #fff;
+  background: var(--zh-patina);
+  padding: .18rem .42rem;
+  border-radius: 2px;
+  flex: none;
+}
+
+.zh-lesson .zh-shuowen .cite {
+  font-family: var(--zh-serif);
+  font-size: 1rem;
+}
+
+.zh-lesson .zh-shuowen .gloss {
+  font-size: .82rem;
+  color: var(--zh-muted);
+}
+
+/* ② 의미 이동 타임라인 ────────────────────── */
+
+.zh-lesson .zh-drift {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  grid-auto-flow: column;
+  background: var(--zh-card);
+  box-shadow: 0 1px 3px var(--zh-shadow);
+  overflow: hidden;
+}
+
+.zh-lesson .zh-drift .stage {
+  padding: 1.15rem 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  position: relative;
+  border-right: 1px solid var(--zh-rule);
+}
+
+.zh-lesson .zh-drift .stage:last-child {
+  border-right: 0;
+}
+
+.zh-lesson .zh-drift .era {
+  font-size: .66rem;
+  letter-spacing: .09em;
+  color: var(--zh-muted);
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+.zh-lesson .zh-drift .obj {
+  font-family: var(--zh-brush);
+  font-size: 1.45rem;
+  color: var(--zh-patina);
+  line-height: 1;
+}
+
+.zh-lesson .zh-drift .stage:last-child .obj {
+  color: var(--zh-cinnabar);
+}
+
+.zh-lesson .zh-drift .scene {
+  font-size: .89rem;
+  line-height: 1.6;
+}
+
+.zh-lesson .zh-drift .stage::after {
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-top: 1.5px solid var(--zh-rule);
+  border-right: 1.5px solid var(--zh-rule);
+  transform: translateY(-50%) rotate(45deg);
+  background: var(--zh-card);
+  z-index: 2;
+}
+
+.zh-lesson .zh-drift .stage:last-child::after {
+  display: none;
+}
+
+/* ③ 대칭 저울 (益 / 损 같은 대립쌍) ────────── */
+
+.zh-lesson .zh-balance {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  background: var(--zh-card);
+  box-shadow: 0 1px 3px var(--zh-shadow);
+}
+
+.zh-lesson .zh-balance .pan {
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .55rem;
+  text-align: center;
+}
+
+.zh-lesson .zh-balance .big {
+  font-family: var(--zh-brush);
+  font-size: 3.4rem;
+  line-height: 1;
+}
+
+.zh-lesson .zh-balance .made {
+  font-size: .81rem;
+  color: var(--zh-muted);
+  line-height: 1.65;
+}
+
+.zh-lesson .zh-balance .made b {
+  font-family: var(--zh-brush);
+  font-size: 1.15em;
+  color: var(--zh-ink);
+  font-weight: 400;
+}
+
+.zh-lesson .zh-balance .verdict {
+  font-size: .85rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.zh-lesson .zh-balance .pan.plus .big,
+.zh-lesson .zh-balance .pan.plus .verdict {
+  color: var(--zh-cinnabar);
+}
+
+.zh-lesson .zh-balance .pan.minus .big,
+.zh-lesson .zh-balance .pan.minus .verdict {
+  color: var(--zh-patina);
+}
+
+.zh-lesson .zh-balance .fulcrum {
+  width: 1px;
+  background: var(--zh-rule);
+  position: relative;
+}
+
+.zh-lesson .zh-balance .fulcrum span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--zh-card);
+  padding: .3rem 0;
+  font-family: var(--zh-serif);
+  font-size: .8rem;
+  color: var(--zh-muted);
+  writing-mode: vertical-rl;
+  letter-spacing: .2em;
+}
+
+/* 지난 회차 복습 호출 ─────────────────────── */
+
+.zh-lesson .zh-recall {
+  margin: 2.4rem 0;
+  padding: .85rem 1.1rem;
+  border: 1px dashed var(--zh-rule);
+  display: flex;
+  gap: .75rem;
+  align-items: flex-start;
+  font-size: .89rem;
+  line-height: 1.7;
+  border-radius: 2px;
+}
+
+.zh-lesson .zh-recall .mark {
+  color: var(--zh-patina);
+  flex: none;
+  font-size: 1rem;
+}
+
+.zh-lesson .zh-recall .ago {
+  font-size: .68rem;
+  color: var(--zh-muted);
+  letter-spacing: .06em;
+  white-space: nowrap;
+  margin-left: auto;
+}
+
+/* 오늘 남길 것 ────────────────────────────── */
+
+.zh-lesson .zh-harvest {
+  margin: 3rem 0 0;
+  border-top: 2px solid var(--zh-ink);
+  padding-top: 1.2rem;
+}
+
+.zh-lesson .zh-harvest h3 {
+  font-size: .72rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--zh-muted);
+  margin: 0 0 .9rem;
+  font-weight: 600;
+}
+
+.zh-lesson .zh-haul {
+  width: 100%;
+  border-collapse: collapse;
+  display: table;
+}
+
+.zh-lesson .zh-haul td {
+  padding: .62rem .5rem;
+  border-bottom: 1px solid var(--zh-rule);
+  vertical-align: baseline;
+  border-left: 0;
+  border-right: 0;
+}
+
+.zh-lesson .zh-haul td:first-child {
+  font-family: var(--zh-serif);
+  font-weight: 700;
+  white-space: nowrap;
+  width: 1%;
+  padding-left: 0;
+}
+
+.zh-lesson .zh-haul td:nth-child(2) {
+  font-size: .8rem;
+  color: var(--zh-muted);
+  font-style: italic;
+  white-space: nowrap;
+  width: 1%;
+}
+
+.zh-lesson .zh-haul td:last-child {
+  font-size: .89rem;
+  padding-right: 0;
+}
+
+.zh-lesson .zh-haul tr:last-child td {
+  border-bottom: 0;
+}
+
+/* 모은 부수 도감 (누적) ───────────────────── */
+
+.zh-lesson .zh-radicals {
+  margin-top: 2.4rem;
+  background: var(--zh-card);
+  box-shadow: 0 1px 3px var(--zh-shadow);
+  padding: 1.1rem 1.2rem 1.3rem;
+}
+
+.zh-lesson .zh-radicals h3 {
+  font-size: .72rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--zh-muted);
+  margin: 0 0 .2rem;
+  font-weight: 600;
+}
+
+.zh-lesson .zh-radicals .sub {
+  font-size: .77rem;
+  color: var(--zh-muted);
+  margin: 0 0 .95rem;
+  line-height: 1.6;
+}
+
+.zh-lesson .zh-radicals .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(4.4rem, 1fr));
+  gap: .5rem;
+}
+
+.zh-lesson .zh-radicals .rad {
+  border: 1px solid var(--zh-rule);
+  padding: .55rem .3rem .5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  border-radius: 2px;
+}
+
+.zh-lesson .zh-radicals .r-g {
+  font-family: var(--zh-brush);
+  font-size: 1.5rem;
+  line-height: 1.1;
+}
+
+.zh-lesson .zh-radicals .r-n {
+  font-size: .66rem;
+  color: var(--zh-muted);
+  line-height: 1.35;
+}
+
+.zh-lesson .zh-radicals .r-c {
+  font-size: .6rem;
+  color: var(--zh-muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .03em;
+}
+
+.zh-lesson .zh-radicals .rad.is-new {
+  border-color: var(--zh-cinnabar);
+  background: rgba(184, 50, 44, .06);
+}
+
+.zh-lesson .zh-radicals .rad.is-new .r-g {
+  color: var(--zh-cinnabar);
+}
+
+.zh-lesson .zh-radicals .rad.is-old {
+  opacity: .5;
+}
+
+/* 출처 ────────────────────────────────────── */
+
+.zh-lesson .zh-credit {
+  margin-top: 2.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--zh-rule);
+  font-size: .75rem;
+  color: var(--zh-muted);
+  line-height: 1.8;
+}
+
+/* 좁은 화면 ───────────────────────────────── */
+
+@media (max-width: 34rem) {
+  .zh-lesson .zh-dissect {
+    grid-template-columns: 1fr;
+  }
+
+  .zh-lesson .zh-dissect .whole {
+    border-right: 0;
+    border-bottom: 1px solid var(--zh-rule);
+    flex-direction: row;
+    gap: .9rem;
+    padding: 1rem;
+    background: none;
+  }
+
+  .zh-lesson .zh-dissect .whole .glyph {
+    font-size: 3.4rem;
+  }
+
+  .zh-lesson .zh-drift {
+    grid-auto-flow: row;
+    grid-template-columns: 1fr;
+  }
+
+  .zh-lesson .zh-drift .stage {
+    border-right: 0;
+    border-bottom: 1px solid var(--zh-rule);
+  }
+
+  .zh-lesson .zh-drift .stage:last-child {
+    border-bottom: 0;
+  }
+
+  .zh-lesson .zh-drift .stage::after {
+    right: 50%;
+    top: auto;
+    bottom: -6px;
+    transform: translateX(50%) rotate(135deg);
+  }
+
+  .zh-lesson .zh-balance {
+    grid-template-columns: 1fr;
+  }
+
+  .zh-lesson .zh-balance .fulcrum {
+    width: auto;
+    height: 1px;
+  }
+
+  .zh-lesson .zh-balance .fulcrum span {
+    writing-mode: horizontal-tb;
+    padding: 0 .5rem;
+  }
+
+  .zh-lesson .zh-recall {
+    flex-wrap: wrap;
+  }
+
+  .zh-lesson .zh-recall .ago {
+    margin-left: 1.75rem;
+  }
+}

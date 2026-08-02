@@ -1,0 +1,12 @@
+{%- comment -%}
+zh-class 수업 글의 마지막 줄. head.html이 연 래퍼를 닫는다.
+credit(소스·어원 근거·연결된 기록)을 함께 받는다.
+{%- endcomment -%}
+{%- if include.source or include.etymology or include.anchor -%}
+<div class="zh-credit">
+{%- if include.source %}소스 · {{ include.source }}<br>{% endif -%}
+{%- if include.etymology %}어원 근거 · {{ include.etymology }}<br>{% endif -%}
+{%- if include.anchor %}연결된 나의 기록 · {{ include.anchor }}{% endif -%}
+</div>
+{%- endif -%}
+</div>

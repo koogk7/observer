@@ -1,0 +1,11 @@
+{%- comment -%}
+오늘 중국 인터넷에서 건져온 원문 한 줄.
+사용: {% include zh/source.html from="오늘 올라온 글" title="卸载小红书后一身轻松"
+      py="xièzài Xiǎohóngshū hòu yìshēn qīngsōng" ko="샤오홍슈 지웠더니 온몸이 가뿐하다" %}
+{%- endcomment -%}
+<div class="zh-source">
+  <span class="from">{{ include.from | default: "오늘 올라온 글" }}</span>
+  <span class="title">{{ include.title }}</span>
+  {%- if include.py %}<span class="py">{{ include.py }}</span>{% endif -%}
+  {%- if include.ko %}<span class="ko">{{ include.ko }}</span>{% endif -%}
+</div>

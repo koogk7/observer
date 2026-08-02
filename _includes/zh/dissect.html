@@ -1,0 +1,42 @@
+{%- comment -%}
+① 글자 해부(字解) — 글자를 부품으로 쪼개 각 부품의 원뜻을 보인다.
+
+사용:
+{% include zh/dissect.html glyph="卸" reading="xiè"
+   parts="午|wǔ · 소리를 맡은 부분|원래 절굿공이의 상형. 여기서는 뜻이 아니라 발음을 담당한다.;止|zhǐ · 멈춤|본래 발자국의 모양. 걸음이 멈추는 자리다.;卩|jié · 무릎 꿇은 사람|몸을 굽히고 앉은 사람. 짐을 내리려면 사람은 몸을 낮춘다."
+   shuowen="卸,舍車解馬也" gloss="수레를 세우고 말을 풀어놓는 것"
+   caption="멈춤(止)과 몸을 낮춘 사람(卩)이 한 글자 안에 같이 있다." %}
+
+parts 구분자: 부품끼리 `;`, 한 부품 안 필드는 `글자|독음·뜻|설명`.
+설명에 `;` 나 `|` 를 쓰지 않는다.
+shuowen 은 근거가 있을 때만 넣는다 — 없으면 통째로 생략한다(지어내지 않는다).
+{%- endcomment -%}
+<figure class="zh-fig">
+  <div class="zh-dissect">
+    <div class="whole">
+      <span class="glyph">{{ include.glyph }}</span>
+      {%- if include.reading %}<span class="rd">{{ include.reading }}</span>{% endif -%}
+    </div>
+    <div class="parts">
+      {%- assign zh_parts = include.parts | split: ";" -%}
+      {%- for zh_p in zh_parts -%}
+        {%- assign zh_f = zh_p | split: "|" -%}
+        <div class="part">
+          <span class="p-glyph">{{ zh_f[0] | strip }}</span>
+          <span class="p-body">
+            <span class="p-name">{{ zh_f[0] | strip }}{% if zh_f[1] %} <em>{{ zh_f[1] | strip }}</em>{% endif %}</span>
+            {%- if zh_f[2] %}<span class="p-note">{{ zh_f[2] | strip }}</span>{% endif -%}
+          </span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+  {%- if include.shuowen %}
+  <div class="zh-shuowen">
+    <span class="tag">{{ include.cite_from | default: "說文解字" }}</span>
+    <span class="cite">{{ include.shuowen }}</span>
+    {%- if include.gloss %}<span class="gloss">{{ include.gloss }}</span>{% endif -%}
+  </div>
+  {%- endif -%}
+  {%- if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif -%}
+</figure>

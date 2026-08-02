@@ -1,0 +1,13 @@
+{%- comment -%}
+지난 회차에 심은 표현을 다시 꺼내는 자리. 이 블록이 이 수업의 복습 장치다.
+본문 안에서는 병음 없이 한자만 쓰고, 여기서 어느 회차 것인지만 밝힌다.
+
+사용:
+{% include zh/recall.html lesson="第 4 课"
+   text="지난주에 알려준 <span class=\"zh-term\">断舍离</span> 기억나? 断의 오른쪽 斤이 도끼였잖아." %}
+{%- endcomment -%}
+<div class="zh-recall">
+  <span class="mark">↺</span>
+  <span>{{ include.text }}</span>
+  {%- if include.lesson %}<span class="ago">{{ include.lesson }}</span>{% endif -%}
+</div>

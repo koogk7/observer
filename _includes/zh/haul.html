@@ -1,0 +1,23 @@
+{%- comment -%}
+오늘 남길 것 — 이 수업에서 건진 표현 목록.
+
+사용:
+{% include zh/haul.html rows="卸载|xièzài|싣고 있던 걸 내리다 · 앱을 삭제하다;一身轻松|yìshēn qīngsōng|온몸이 가뿐하다" %}
+
+rows 구분자: 줄끼리 `;`, 한 줄 안 필드는 `표현|병음|뜻`.
+병음은 언제나 붙인다.
+{%- endcomment -%}
+<div class="zh-harvest">
+  <h3>{{ include.title | default: "오늘 남길 것" }}</h3>
+  <table class="zh-haul">
+    {%- assign zh_rows = include.rows | split: ";" -%}
+    {%- for zh_r in zh_rows -%}
+      {%- assign zh_f = zh_r | split: "|" -%}
+      <tr>
+        <td>{{ zh_f[0] | strip }}</td>
+        <td>{{ zh_f[1] | strip }}</td>
+        <td>{{ zh_f[2] | strip }}</td>
+      </tr>
+    {%- endfor -%}
+  </table>
+</div>

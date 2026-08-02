@@ -1,0 +1,6 @@
+{%- comment -%}
+인라인 표현 + 병음. 새 표현에는 병음을 반드시 붙이고,
+지난 회차에 이미 심은 표현이 다시 나올 때는 py 를 생략한다(그게 복습 테스트다).
+사용: {% include zh/t.html w="卸载" py="xièzài" %}
+{%- endcomment -%}
+<span class="zh-term">{{ include.w }}</span>{% if include.py %} <span class="zh-py">{{ include.py }}</span>{% endif %}

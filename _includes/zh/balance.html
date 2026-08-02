@@ -1,0 +1,33 @@
+{%- comment -%}
+③ 대칭 저울 — 뜻이 맞서는 두 글자를 나란히 놓고, 생김새가 그 대립을 이미 품고 있음을 보인다.
+   (益 물이 넘침 ↔ 损 손으로 덜어냄 처럼)
+
+사용:
+{% include zh/balance.html
+   left="益" left_made="<b>水</b> 물 + <b>皿</b> 그릇" left_verdict="그릇에 물이 넘치는 장면"
+   left_note="넘친다 → 더한다. 물이라는 뜻은 나중에 溢로 갈라져 나갔다."
+   right="损" right_made="<b>扌</b> 손 + <b>員</b> 소리" right_verdict="손으로 덜어내는 동작"
+   right_note="채우는 건 저절로 넘치지만, 비우는 데는 손이 든다."
+   fulcrum="爲學 / 爲道"
+   caption="益은 가만두면 넘치는 것이고, 损은 손을 써야 일어나는 일이다." %}
+
+왼쪽은 붉게(더하는 쪽), 오른쪽은 녹청으로(덜어내는 쪽) 나온다.
+{%- endcomment -%}
+<figure class="zh-fig">
+  <div class="zh-balance">
+    <div class="pan plus">
+      <span class="big">{{ include.left }}</span>
+      {%- if include.left_made %}<span class="made">{{ include.left_made }}</span>{% endif -%}
+      {%- if include.left_verdict %}<span class="verdict">{{ include.left_verdict }}</span>{% endif -%}
+      {%- if include.left_note %}<span class="made">{{ include.left_note }}</span>{% endif -%}
+    </div>
+    <div class="fulcrum">{%- if include.fulcrum %}<span>{{ include.fulcrum }}</span>{% endif -%}</div>
+    <div class="pan minus">
+      <span class="big">{{ include.right }}</span>
+      {%- if include.right_made %}<span class="made">{{ include.right_made }}</span>{% endif -%}
+      {%- if include.right_verdict %}<span class="verdict">{{ include.right_verdict }}</span>{% endif -%}
+      {%- if include.right_note %}<span class="made">{{ include.right_note }}</span>{% endif -%}
+    </div>
+  </div>
+  {%- if include.caption %}<figcaption>{{ include.caption }}</figcaption>{% endif -%}
+</figure>
